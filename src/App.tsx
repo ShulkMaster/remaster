@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import { AppLayout } from '@/components';
-import { Home, Counter } from '@/pages';
+import { Home, Counter, Todo } from '@/pages';
 export function App() {
   const [route, setRoute] = useState('/')
 
@@ -9,6 +9,9 @@ export function App() {
   switch (route) {
     case 'counter':
       Content = Counter;
+      break;
+    case 'todo':
+      Content = Todo;
       break;
     default:
       Content = Home;

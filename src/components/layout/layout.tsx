@@ -13,7 +13,7 @@ export type AppLayoutProps = {
 const menuItems: ItemType[] = [
   { key: '/', label: 'Home' },
   { key: 'counter', label: 'Counter' },
-  { key: 'contact', label: 'Contact' },
+  { key: 'todo', label: 'To Do' },
 ];
 
 export const AppLayout = ({ selected, onRouteChange, children }: AppLayoutProps) => {
