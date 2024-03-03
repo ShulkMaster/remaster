@@ -1,2 +1,2 @@
 export { Counter } from './Counter';
-export { Home } from './Home';
+export { Home } from './home/Home';
