@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import { AppLayout } from '@/components';
 import { Home, Counter } from '@/pages';
 export function App() {
-  const [route, setRoute] = useState('counter')
+  const [route, setRoute] = useState('/')
 
   let Content: FC;
 
