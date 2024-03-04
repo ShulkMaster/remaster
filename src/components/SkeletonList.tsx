@@ -1,5 +1,6 @@
 import { Divider, Skeleton } from '@applaudo/react-clapp-ui';
 
+const styles = {display: 'flex', gap: '8px'};
 export const SkeletonList = () => {
   return (
     <>
@@ -8,7 +9,7 @@ export const SkeletonList = () => {
         <Skeleton.Paragraph rows={1} width="long"/>
         <Divider/>
       </Skeleton>
-      <div style={{display: 'flex', gap: '8px'}}>
+      <div style={styles}>
         <Skeleton.Button/>
         <Skeleton.Button/>
       </div>
