@@ -1,0 +1,11 @@
+.control_bar {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+
+  .control_button {
+    display: inline-flex;
+    padding: 0;
+  }
+}
