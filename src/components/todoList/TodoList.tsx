@@ -2,7 +2,7 @@ import { useSelectTodo, useTodoDispatch } from '@/hooks/useTodo.ts';
 import { useSoundFX } from '@/hooks/useSoundFX.ts';
 import { SkeletonList, TodoCard } from '@/components';
 import styles from './todo.module.scss';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, MouseEvent } from 'react';
 
 export const TodoList = () => {
   const state = useSelectTodo(s => s.todo);
@@ -10,9 +10,9 @@ export const TodoList = () => {
   const {items} = state;
   const fxs = useSoundFX();
 
-
-  const onCheck = (checked: boolean, element: ChangeEvent<HTMLInputElement>) => {
-    const itemId = element.target.id;
+  const onCheck = (checked: boolean, evt: ChangeEvent<HTMLInputElement>) => {
+    evt.stopPropagation();
+    const itemId = evt.target.dataset.id;
     const item = items.find(i => i.id === itemId);
     if (!item) {
       return;
@@ -27,6 +27,24 @@ export const TodoList = () => {
     dispatch.todo.updateItem(item);
   };
 
+  const onSelected = (evt: MouseEvent<HTMLDivElement>) => {
+    const itemId = evt.currentTarget.id;
+    const item = items.find(i => i.id === itemId);
+    if (!item) {
+      return;
+    }
+    dispatch.todo.selectItem(item);
+  };
+
+  const onDeleted = (evt: MouseEvent<HTMLButtonElement>) => {
+    evt.stopPropagation();
+    const itemId = evt.currentTarget.dataset.id;
+    if (!itemId) {
+      return;
+    }
+    dispatch.todo.removeItem(itemId);
+  }
+
   if (!fxs.ready) {
     return <SkeletonList/>;
   }
@@ -38,7 +56,8 @@ export const TodoList = () => {
           key={item.id}
           item={item}
           onStatusChange={onCheck}
-          onDelete={() => fxs.playUndo()}
+          onSelected={onSelected}
+          onDelete={onDeleted}
         />
       ))}
     </div>

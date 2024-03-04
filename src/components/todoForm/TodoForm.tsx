@@ -6,6 +6,7 @@ import { useSelectTodo, useTodoDispatch } from '@/hooks/useTodo';
 import { useCallback } from 'react';
 import { FormApi, ValidationErrors } from 'final-form';
 import { Form, Field, FieldMetaState } from 'react-final-form';
+import { TodoItem } from '@/types/todo.ts';
 
 type FormValues = {
   title: string;
@@ -19,7 +20,6 @@ const validate = (values: FormValues): ValidationErrors => {
     errors.title = 'Title is required';
   }
   if (!values.date) {
-    console.log(values.date);
     errors.date = 'Date is required';
   }
   if (!values.text) {
@@ -33,14 +33,26 @@ const showErrors = (meta: FieldMetaState<string>): 'error' | 'normal' => {
     return 'error';
   }
   return 'normal';
-}
+};
 
 export const TodoForm = () => {
   const dispatch = useTodoDispatch();
   const selected = useSelectTodo((state) => state.todo.selected);
   const onSubmit = useCallback((values: FormValues, form: FormApi) => {
-    form.restart();
-    form.submit();
+    form.restart(
+      {
+        title: '',
+        date: null,
+        text: '',
+      }
+    );
+
+    if ((values as TodoItem).id?.length > 0) {
+      dispatch.todo.selectItem(null);
+      dispatch.todo.updateItem(values as TodoItem);
+      return;
+    }
+
     dispatch.todo.addItem({
       ...values,
       id: '',
@@ -49,7 +61,7 @@ export const TodoForm = () => {
   }, [dispatch]);
 
   return (
-    <Form<FormValues> onSubmit={onSubmit as any} initialValues={selected ?? undefined} validate={validate}>
+    <Form<FormValues> onSubmit={onSubmit as any} initialValues={selected ?? {}} validate={validate}>
       {({handleSubmit}) => (
         <form onSubmit={handleSubmit} className={styles.form_task}>
           <div className={styles.form_task_field}>
@@ -97,7 +109,9 @@ export const TodoForm = () => {
                 />
               )}
             </Field>
-            <Button type="submit" className={styles.cap_height}>Add</Button>
+            <Button type="submit" className={styles.cap_height}>
+              {selected ? 'Update' : 'Add'}
+            </Button>
           </div>
         </form>
       )}

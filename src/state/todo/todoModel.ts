@@ -18,13 +18,16 @@ const addItem = (state: TodoState, payload: TodoItem): TodoState => {
   payload.id = generateId(10);
   newState.items.push(payload);
   return newState;
-}
+};
 
 const removeItem = (state: TodoState, payload: string): TodoState => {
   const newState = cloneDeep(state);
   newState.items = newState.items.filter((item) => item.id !== payload);
+  if (newState.selected?.id === payload) {
+    newState.selected = null;
+  }
   return newState;
-}
+};
 
 const updateItem = (state: TodoState, payload: TodoItem): TodoState => {
   const newState = cloneDeep(state);
@@ -36,7 +39,7 @@ const updateItem = (state: TodoState, payload: TodoItem): TodoState => {
 
   newState.items[index] = payload;
   return newState;
-}
+};
 
 export const todoModel = createModel()({
   state: todoState,
