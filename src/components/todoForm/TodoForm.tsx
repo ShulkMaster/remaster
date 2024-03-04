@@ -97,8 +97,8 @@ export const TodoForm = () => {
                 />
               )}
             </Field>
+            <Button type="submit" className={styles.cap_height}>Add</Button>
           </div>
-          <Button type="submit">Add</Button>
         </form>
       )}
     </Form>

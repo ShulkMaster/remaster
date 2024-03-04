@@ -1,7 +1,7 @@
 .control_bar {
   display: flex;
   gap: 8px;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 
   .control_button {
