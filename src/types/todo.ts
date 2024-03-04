@@ -5,3 +5,8 @@ export type TodoItem = {
   title: string;
   date: Date;
 };
+
+export type TodoState = {
+  items: TodoItem[];
+  selected: TodoItem | null;
+};

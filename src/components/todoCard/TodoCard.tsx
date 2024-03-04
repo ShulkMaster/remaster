@@ -10,10 +10,12 @@ export type TodoCardProps = {
 }
 export const TodoCard = ({ item }: TodoCardProps) => {
   const date = item.date.toLocaleDateString();
+  const textDecoration = item.done ? 'line-through' : undefined;
+
   return (
     <Card direction="horizontal" cover="" elevation outline>
       <Card.Header title={item.title} subTitle={`Due date ${date}`} />
-      <p>{item.text}</p>
+      <p style={{ textDecoration }}>{item.text}</p>
       <div className={styles.control_bar}>
         <Checkbox>{item.done ? 'Finish' : 'Pending'}</Checkbox>
         <Button size="small" mode="secondary" className={styles.control_button}>
