@@ -3,13 +3,7 @@ import { createModel } from '@rematch/core';
 import { cloneDeep } from 'lodash';
 
 export const todoState: TodoState = {
-  items: [{
-    title: 'First item',
-    done: false,
-    id: '1',
-    date: new Date(),
-    text: 'This is the first item'
-  }],
+  items: [],
   selected: null,
 };
 
@@ -21,6 +15,7 @@ const selectItem = (state: TodoState, payload: TodoItem | null): TodoState => {
 
 const addItem = (state: TodoState, payload: TodoItem): TodoState => {
   const newState = cloneDeep(state);
+  payload.id = generateId(10);
   newState.items.push(payload);
   return newState;
 }
@@ -52,3 +47,16 @@ export const todoModel = createModel()({
     updateItem,
   }
 });
+
+const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+function generateId(length: number): string {
+  const charactersLength = characters.length;
+  const randomValues = new Uint32Array(length);
+  window.crypto.getRandomValues(randomValues);
+  let id = '';
+  for (let i = 0; i < length; i++) {
+    id += characters.charAt(randomValues[i] % charactersLength);
+  }
+  return id;
+}

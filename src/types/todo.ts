@@ -1,9 +1,11 @@
+import { DateTime } from 'luxon';
+
 export type TodoItem = {
   id: string;
   text: string;
   done: boolean;
   title: string;
-  date: Date;
+  date: DateTime;
 };
 
 export type TodoState = {

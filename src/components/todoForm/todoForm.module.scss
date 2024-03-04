@@ -1,0 +1,12 @@
+.form_task_field {
+  display: flex;
+  justify-content: flex-start;
+  max-width: 910px;
+  gap: 16px;
+  margin-bottom: 16px;
+
+
+  .form_input {
+    width: 430px;
+  }
+}
