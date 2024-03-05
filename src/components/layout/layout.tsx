@@ -14,6 +14,7 @@ const menuItems: ItemType[] = [
   { key: '/', label: 'Home' },
   { key: 'counter', label: 'Counter' },
   { key: 'todo', label: 'To Do' },
+  { key: 'panel', label: 'Panel' },
 ];
 
 export const AppLayout = ({ selected, onRouteChange, children }: AppLayoutProps) => {
@@ -24,7 +25,7 @@ export const AppLayout = ({ selected, onRouteChange, children }: AppLayoutProps)
   return (
     <Layout theme="light" className={styles.aside_navigation}>
       <Layout.Header title="Rematch Tutorial" className={styles.header_content}>
-        <img src={rematchLogo} alt="logo" height={32}/>
+        <img src={rematchLogo} alt="logo" height={32} />
       </Layout.Header>
       <main className={styles.main_content}>
         {children}

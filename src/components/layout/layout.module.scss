@@ -9,6 +9,11 @@
   .header_content {
     display: flex;
     flex-wrap: nowrap;
+    padding: 1em 0.5em;
+
+    img {
+      margin: 0 1em;
+    }
   }
 
   .main_content {

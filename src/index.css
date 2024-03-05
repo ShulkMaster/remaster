@@ -347,3 +347,11 @@ template {
 [hidden] {
   display: none;
 }
+
+.rc-tabs-tab-active::after {
+  background-color: #ff4040;
+}
+
+.clp-select-dropdown.rc-select-dropdown {
+  z-index: 1000;
+}
