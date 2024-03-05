@@ -1,7 +1,5 @@
 import { Tabs } from '@applaudo/react-clapp-ui';
-import { Network, Screen } from './panels';
-
-
+import { Network, Screen, User } from './panels';
 
 export const ControlPanel = () => {
   return (
@@ -12,8 +10,8 @@ export const ControlPanel = () => {
       <Tabs.TabPane key="screen" tab="Screen">
         <Screen />
       </Tabs.TabPane>
-      <Tabs.TabPane key="storage" tab="sd">
-        <div>Storage</div>
+      <Tabs.TabPane key="user" tab="User">
+        <User />
       </Tabs.TabPane>
     </Tabs>
   );
