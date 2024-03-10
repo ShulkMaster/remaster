@@ -20,7 +20,7 @@ export const pokemon = createModel<PokemonRootModel>()({
         data: payload,
         limit: req.limit,
         offset: req.offset,
-        setLoading: false,
+        loading: false,
       };
     },
     setLoading: (state, payload: boolean) => {

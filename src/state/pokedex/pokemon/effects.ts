@@ -18,6 +18,7 @@ async function updateTotal(this: PokeDispatch): Promise<void> {
 async function getPokemons(this: PokeDispatch, req: PageRequest, state: PokeRootState): Promise<void> {
   this.pokemon.setLoading(true);
   const db = state.db.db;
+  console.log(req);
   const cached = await getPokemonPage(db, req);
   if (cached.length === req.limit) {
     // We have all the data we need
@@ -27,7 +28,10 @@ async function getPokemons(this: PokeDispatch, req: PageRequest, state: PokeRoot
 
   const apiCalls: Promise<Pokemon>[] = [];
   const cachedIds = new Set(cached.map((p) => p.id));
-  for (let id = req.offset + 1; id <= req.limit; id++) {
+  const startId = req.offset + 1;
+  const endId = req.offset + req.limit;
+
+  for (let id = startId; id <= endId; id++) {
     if (cachedIds.has(id)) {
       continue;
     }

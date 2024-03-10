@@ -1,0 +1,15 @@
+.pokedex_list {
+  padding: 2em;
+
+  .pokedex_list_tag {
+    list-style: none;
+  }
+}
+
+
+.poke_props {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  align-items: center;
+}

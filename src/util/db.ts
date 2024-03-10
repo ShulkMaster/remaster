@@ -52,7 +52,7 @@ export async function getPokemonPage(db: IDBDatabase, req: PageRequest) {
   const trans = db.transaction(pokemonStore.name, 'readonly');
   const store = trans.objectStore(pokemonStore.name);
   const end = req.offset + req.limit;
-  const cursor = store.openCursor(IDBKeyRange.bound(req.offset, end));
+  const cursor = store.openCursor(IDBKeyRange.bound(req.offset + 1, end));
   return await collect<Pokemon>(cursor);
 }
 

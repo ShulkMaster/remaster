@@ -1,0 +1,11 @@
+.Card.card-horizontal .card-media .card-media-cover img {
+    width: 150px;
+    height: 250px;
+    object-fit: contain;
+    margin-left: 4px;
+    padding: 4px;
+}
+
+.Card.card-horizontal .card-media {
+    width: unset;
+}
