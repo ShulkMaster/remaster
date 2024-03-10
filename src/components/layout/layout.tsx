@@ -15,6 +15,7 @@ const menuItems: ItemType[] = [
   { key: 'counter', label: 'Counter' },
   { key: 'todo', label: 'To Do' },
   { key: 'panel', label: 'Panel' },
+  { key: 'poke-dex', label: 'Poke dex' },
 ];
 
 export const AppLayout = ({ selected, onRouteChange, children }: AppLayoutProps) => {
