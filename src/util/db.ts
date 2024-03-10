@@ -56,6 +56,16 @@ export async function getPokemonPage(db: IDBDatabase, req: PageRequest) {
   return await collect<Pokemon>(cursor);
 }
 
+export async function searchPokemon(db: IDBDatabase, name: string) {
+  const trans = db.transaction(pokemonStore.name, 'readonly');
+  const store = trans.objectStore(pokemonStore.name);
+  const index = store.index(pokemonStore.index.name);
+
+  const keyRange = IDBKeyRange.bound(name, name + '\uffff');
+  const cursor = index.openCursor(keyRange);
+  return await collect<Pokemon>(cursor);
+}
+
 export function putPokemon(db: IDBDatabase, pokemons: Pokemon[]): Promise<void> {
   const trans = db.transaction(pokemonStore.name, 'readwrite');
   const store = trans.objectStore(pokemonStore.name);

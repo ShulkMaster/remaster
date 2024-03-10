@@ -20,6 +20,7 @@ export const pokemon = createModel<PokemonRootModel>()({
         data: payload,
         limit: req.limit,
         offset: req.offset,
+        filter: req.filter,
         loading: false,
       };
     },

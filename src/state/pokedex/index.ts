@@ -15,6 +15,11 @@ const models: PokemonRootModel = {
 export const pokemonStore = init({
   name: 'pokemonStore',
   models,
+  redux: {
+    devtoolOptions: {
+      serialize: true,
+    }
+  }
 });
 
 export type PokeDispatch = RematchDispatch<PokemonRootModel>;

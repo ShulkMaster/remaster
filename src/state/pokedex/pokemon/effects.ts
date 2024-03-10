@@ -1,6 +1,6 @@
 import { PokeDispatch, PokeRootState } from '@/state/pokedex';
 import { PageRequest, Pokemon } from '@/types/pokemon';
-import { getPokemonPage, putPokemon } from '@/util/db';
+import { getPokemonPage, putPokemon, searchPokemon } from '@/util/db';
 import { api } from '@/util/api';
 
 async function updateTotal(this: PokeDispatch): Promise<void> {
@@ -18,7 +18,6 @@ async function updateTotal(this: PokeDispatch): Promise<void> {
 async function getPokemons(this: PokeDispatch, req: PageRequest, state: PokeRootState): Promise<void> {
   this.pokemon.setLoading(true);
   const db = state.db.db;
-  console.log(req);
   const cached = await getPokemonPage(db, req);
   if (cached.length === req.limit) {
     // We have all the data we need
@@ -51,8 +50,22 @@ async function getPokemons(this: PokeDispatch, req: PageRequest, state: PokeRoot
   return putPokemon(db, results);
 }
 
+async function findByName(this: PokeDispatch, name: string, state: PokeRootState): Promise<void> {
+  const db = state.db.db;
+  const results = await searchPokemon(db, name);
+  const filter: Record<string, string> = {};
+  if (!name) {
+    this.pokemon.getPokemons({limit: 10, offset: 0, filter: {}});
+    return;
+  }
+  filter.name = name;
+  this.pokemon.setPokemons(results, {
+    limit: results.length, offset: 0, filter
+  });
+}
 
 export const pokemonEffects = (dispatch: PokeDispatch) => ({
   updateTotal: updateTotal.bind(dispatch),
   getPokemons: getPokemons.bind(dispatch),
+  findByName: findByName.bind(dispatch),
 });
