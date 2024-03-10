@@ -42,7 +42,6 @@ function collect<T>(cursor: IDBRequest<IDBCursorWithValue | null>): Promise<T[]>
       const cursor = unwrap.cursor(evt);
       if(!cursor) return resolve(items);
       items.push(cursor.value);
-      console.log(cursor.value.name);
       cursor.continue();
     };
     cursor.onerror = reject;
