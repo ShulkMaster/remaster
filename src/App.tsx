@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import { AppLayout } from '@/components';
-import { Home, Counter, Todo, ControlPanel } from '@/pages';
+import { Home, Counter, Todo, ControlPanel, Pokedex } from '@/pages';
 
 export function App() {
   const [route, setRoute] = useState('panel');
@@ -16,6 +16,9 @@ export function App() {
       break;
     case 'panel':
       Content = ControlPanel;
+      break;
+    case 'poke-dex':
+      Content = Pokedex;
       break;
     default:
       Content = Home;
