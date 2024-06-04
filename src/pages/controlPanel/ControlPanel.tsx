@@ -1,4 +1,4 @@
-import { Tabs } from '@applaudo/react-clapp-ui';
+import { Button, Tabs } from '@applaudo/react-clapp-ui';
 import { Network, Screen, User } from './panels';
 import { Provider } from 'react-redux';
 import { settingsStore } from '@/state/settings';
@@ -17,6 +17,7 @@ export const ControlPanel = () => {
           <User/>
         </Tabs.TabPane>
       </Tabs>
+      <Button onClick={settingsStore.dispatch.settings.saveToCloud}>Save</Button>
     </Provider>
   );
 };

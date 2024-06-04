@@ -17,7 +17,7 @@ export const Home = () => {
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className={rLogo} alt="React logo"/>
         </a>
-        <a href="https://vitejs.dev" target="_blank">
+        <a href="https://rematchjs.org/" target="_blank">
           <img src={rematchLogo} className={styles.logo} alt="Vite logo"/>
         </a>
       </div>

@@ -29,7 +29,6 @@ export const PokemonList = () => {
     dispatch.pokemon.findByName(name);
   }, [filter]);
 
-  console.log('data', filter);
   const totalPages = 'name' in pokePage.filter ? data.length : pokePage.total
 
   return (

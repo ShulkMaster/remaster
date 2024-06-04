@@ -72,4 +72,10 @@ export const initialState: SettingsState = {
 export const settingsModel = createModel<SettingsRootModel>()({
   state: initialState,
   reducers: settingsReducers,
+  effects: {
+    saveToCloud: async function (_, state) {
+      console.log(this);
+      console.log(state.settings);
+    }
+  }
 });

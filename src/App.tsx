@@ -3,7 +3,7 @@ import { AppLayout } from '@/components';
 import { Home, Counter, Todo, ControlPanel, Pokedex } from '@/pages';
 
 export function App() {
-  const [route, setRoute] = useState('panel');
+  const [route, setRoute] = useState('home');
 
   let Content: FC;
 
